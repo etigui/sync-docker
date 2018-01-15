@@ -8,21 +8,17 @@ MAINTAINER Resilio Inc. <support@resilio.com>
 LABEL com.resilio.version="2.5.11"
 ENV DEBIAN_FRONTEND noninteractive
 RUN mkdir -p /mnt/sync/
-RUN mkdir -p /mnt/sync/data/
-RUN mkdir -p /mnt/sync/conf/
 RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y sshpass unzip
-WORKDIR "/mnt/sync/conf/"
-ADD sync.conf .
 ADD https://download-cdn.resilio.com/2.5.11/linux-x64/resilio-sync_x64.tar.gz /tmp/sync.tgz
 RUN tar -xf /tmp/sync.tgz -C /usr/bin rslsync && rm -f /tmp/sync.tgz
 
-COPY run_sync /usr/bin/
+COPY gen_conf /usr/bin/
 
 EXPOSE 8888
 EXPOSE 55555
 
 VOLUME /mnt/sync/
 
-ENTRYPOINT ["run_sync"]
+ENTRYPOINT ["gen_conf"]
 CMD ["--config", "/mnt/sync/conf/sync.conf"]
