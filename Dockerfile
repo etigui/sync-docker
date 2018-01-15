@@ -7,7 +7,7 @@ FROM ubuntu
 MAINTAINER Resilio Inc. <support@resilio.com>
 LABEL com.resilio.version="2.5.11"
 ENV DEBIAN_FRONTEND noninteractive
-RUN mkdir -p /mnt/sync
+RUN mkdir -p /mnt/sync/
 RUN mkdir -p /mnt/sync/data/
 RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y sshpass unzip
