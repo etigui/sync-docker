@@ -1,10 +1,2 @@
 #! /bin/bash
-#mkdir -p /mnt/sync
-#mkdir -p /mnt/sync/folders
-#mkdir -p /mnt/ssh-nas/data-group07/sync/config
-
-#if ! [ -f /mnt/sync/sync.conf ]; then
-#    cp /etc/sync.conf.default /mnt/sync/sync.conf;
-#fi
-
 exec /usr/bin/rslsync --nodaemon $*
