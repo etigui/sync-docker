@@ -42,5 +42,5 @@ script+=']'
 script+='}'
 
 
-echo -e $script > $conf_dir"sync.conf"
+echo $script > $conf_dir"sync.conf"
 exec /usr/bin/rslsync --nodaemon $*
