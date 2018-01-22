@@ -10,6 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN mkdir -p /mnt/sync/
 RUN mkdir -p /mnt/sync/data/
 RUN mkdir -p /mnt/sync/conf/
+RUN chown -R 33:33 /mnt/sync
 RUN apt-get update && apt-get install -y apt-utils
 RUN apt-get install -y sshpass unzip
 WORKDIR "/mnt/sync/conf/"
@@ -22,7 +23,6 @@ COPY run_sync /usr/bin/
 EXPOSE 8888
 EXPOSE 55555
 
-VOLUME /mnt/sync/
 
 ENTRYPOINT ["run_sync"]
 CMD ["--config", "/mnt/sync/conf/sync.conf"]
